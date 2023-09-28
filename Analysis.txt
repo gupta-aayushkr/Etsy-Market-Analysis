@@ -1,6 +1,21 @@
-Can do - 
-Price Range
-The column names are not regular
+This is a dataframe information
+
+RangeIndex: 100 entries, 0 to 99
+Data columns (total 9 columns):
+ #   Column              Non-Null Count  Dtype  
+---  ------              --------------  -----  
+ 0   ShopName            100 non-null    object 
+ 1   Listing             100 non-null    object 
+ 2   Listing Age (Days)  100 non-null    int64  
+ 3   Total Views         100 non-null    float64
+ 4   Daily Views         100 non-null    float64
+ 5   Est. Sales          100 non-null    int64  
+ 6   Price               100 non-null    float64
+ 7   Est. Revenue        100 non-null    float64
+ 8   Hearts              100 non-null    float64
+
+---------------
+These are tasks - modify to remove over time analysis as there are no dates and also provide hint for taskk
 
 Certainly! Here are some common tasks for data visualization and analysis for each column in your DataFrame:
 
