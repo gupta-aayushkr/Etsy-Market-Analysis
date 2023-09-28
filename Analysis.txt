@@ -1,2 +1,52 @@
 Can do - 
 Price Range
+The column names are not regular
+
+Certainly! Here are some common tasks for data visualization and analysis for each column in your DataFrame:
+
+1. **ShopName (Categorical)**:
+   - Count the number of unique shop names.
+   - Create a bar chart to visualize the distribution of listings per shop.
+   - Identify the top shops with the most listings.
+
+2. **Listing (Categorical)**:
+   - Find the most common listing names.
+   - Calculate the number of unique listings.
+   - Create a word cloud to visualize the most frequent words in listing names.
+
+3. **Listing Age (Days) (Numeric)**:
+   - Calculate basic summary statistics like mean, median, and standard deviation.
+   - Create a histogram to visualize the distribution of listing ages.
+   - Compare the listing age distribution for different shops or categories.
+
+4. **Total Views (Numeric)**:
+   - Calculate summary statistics and identify outliers.
+   - Create a line chart to track the total views over time.
+   - Investigate if there's a correlation between total views and other variables.
+
+5. **Daily Views (Numeric)**:
+   - Calculate summary statistics and identify patterns.
+   - Create a line chart to visualize daily views trends.
+   - Look for seasonality or trends in daily views data.
+
+6. **Est. Sales (Numeric)**:
+   - Calculate summary statistics and detect any outliers.
+   - Create a bar chart to compare estimated sales for different listings or shops.
+   - Analyze the relationship between estimated sales and other factors like price.
+
+7. **Price (Numeric)**:
+   - Compute basic statistics like mean, median, and range.
+   - Create a box plot or histogram to show the distribution of prices.
+   - Explore price differences among categories or shops.
+
+8. **Est. Revenue (Numeric)**:
+   - Calculate summary statistics and identify high-revenue listings.
+   - Create a scatter plot to visualize the relationship between estimated revenue and other factors.
+   - Investigate the impact of price and daily views on estimated revenue.
+
+9. **Hearts (Numeric)**:
+   - Analyze the distribution of hearts and detect any outliers.
+   - Create a scatter plot to examine the relationship between hearts and total views or sales.
+   - Identify popular listings based on the number of hearts.
+
+These tasks should help you get started with data visualization and analysis for each column in your DataFrame. Depending on your specific goals and questions, you can choose the most relevant tasks to gain insights from your data.
