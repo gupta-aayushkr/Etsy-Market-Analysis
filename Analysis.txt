@@ -65,3 +65,19 @@ Certainly! Here are some common tasks for data visualization and analysis for ea
    - Identify popular listings based on the number of hearts.
 
 These tasks should help you get started with data visualization and analysis for each column in your DataFrame. Depending on your specific goals and questions, you can choose the most relevant tasks to gain insights from your data.
+
+
+corr_col = [2,3,4,5,6,7,8]
+filtered_df = df[df.columns[corr_col]]
+correlation_matrix = filtered_df.corr()
+
+
+
+
+
+sns.set(style='white')
+plt.figure(figsize=(8, 8))
+# Heatmap
+sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt=".2f", linewidths=0.5)
+plt.title('Correlation Matrix Heatmap')
+plt.show()
