@@ -10,7 +10,8 @@ import os
 st.set_page_config(
         layout="centered")
 
-st.title("Etsy Marketplace Analysis App")
+st.write("Detailed EDA (Jupyter Notebook): [EDA.ipynb](https://github.com/gupta-aayushkr/Etsy-Market-Analysis/blob/main/EDA.ipynb)", unsafe_allow_html=True)
+
 #For custom files
 file1 = st.file_uploader("Upload a CSV file", type=["csv"])
 
