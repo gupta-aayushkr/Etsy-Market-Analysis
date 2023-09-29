@@ -6,6 +6,11 @@ import seaborn as sns
 import streamlit as st
 import os
 
+st.set_page_config(
+    page_icon="🛒",
+    page_title="Etsy Data Analysis",
+    layout="wide")
+
 st.title("Etsy Marketplace Analysis App")
 #For custom files
 file1 = st.file_uploader("Upload a CSV file", type=["csv"])
@@ -45,4 +50,75 @@ for i in range(2,9):
                 df[df.columns[i]] = df[df.columns[i]].astype(float)
 
 filtered_df = df.iloc[:,-7:]
+
+
+#-----------------------------SECTION 1-----------------------------------#
+
+c1,c2 = st.columns(2)
+c1.title("Etsy data analysis")
+c1.info('''
+Information
+''')
+
+#For Informatin
+
+# Create a nested column layout within c1
+nested_c1_left, nested_c1_right = c1.columns(2)
+nested_c1_left.metric("Total Listing", len(df))
+nested_c1_left.metric("Average Price ($)", round(df["Price"].mean(), 2))
+nested_c1_left.metric("Average Revenue ($)", round(df["Est. Revenue"].mean(), 2))
+
+# right metric
+nested_c1_right.metric("Average Sales ($)", df["Est. Sales"].mean())
+nested_c1_right.metric("Average Heart", df["Hearts"].mean())
+nested_c1_right.metric("Average Views", df["Total Views"].mean())
+
+# nested_c1_right.metric("New Metric 2", value_of_metric_2)
+
+c2.header("All Listing Data")
+c2.dataframe(df, width=1000)
+
+#----------------------------SECTION 2-----------------------------------#
+
+metric_col = [
+    'Listing Age (Days)',
+    'Total Views',
+    'Daily Views',
+    'Est. Sales',
+    'Price',
+    'Est. Revenue',
+    'Hearts']
+
+st.header("Top Shops Vs Metric")
+c1, c2 = st.columns(2)
+Metric = c1.selectbox('Select Metric', metric_col, help="Select Metric from this list")
+top_shops = df.groupby("ShopName")[Metric].sum().sort_values(ascending=False).head(10).reset_index()
+fig = px.bar(top_shops, x='ShopName',y=Metric,labels={'x':'ShopName','y':'Metric'},title=f'Top 5 Shops with Highest {Metric}', width=600)
+fig.update_traces(marker=dict(color='#ff4b4b'))
+c1.plotly_chart(fig)
+
+c2.header(f"Listings with Highest {Metric}")
+top_shops = df.groupby("ShopName")[["Listing",Metric]].sum().sort_values(by=Metric, ascending=False).head(15).reset_index()
+c2.dataframe(top_shops, width=1000, height=400)
+
+#------------------------------SECTION 3---------------------------------#
+
+c1, c2= st.columns(2)
+c1.header("WordCloud")
+text_data = df['Listing'].str.cat(sep=' ')
+wordcloud = WordCloud(width=800, height=600, background_color='white').generate(text_data)
+plt.figure(figsize=(10, 5))
+plt.imshow(wordcloud, interpolation='bilinear')
+plt.axis('off')
+fig = plt.gcf()
+c1.pyplot(plt)
+
+
+word_frequencies = wordcloud.words_
+c2.subheader("Word Frequencies in Listings")
+df2 = pd.DataFrame(word_frequencies.items())
+df2.rename(columns={0:'Word',1:'Freq%'}, inplace=True)
+df2['Freq%'] = round(df2['Freq%'] * 100,2)
+c2.dataframe(df2, width=1000, height=500)
+
 
