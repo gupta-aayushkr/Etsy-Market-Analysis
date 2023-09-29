@@ -6,6 +6,10 @@ import seaborn as sns
 import streamlit as st
 import os
 
+
+st.set_page_config(
+        layout="centered")
+
 st.title("Etsy Marketplace Analysis App")
 #For custom files
 file1 = st.file_uploader("Upload a CSV file", type=["csv"])
