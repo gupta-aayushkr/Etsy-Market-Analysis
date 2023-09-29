@@ -331,7 +331,7 @@ ax1.set_xlabel("Price")
 ax1.set_ylabel("Listing Age (Days)")
 ax1.set_title("Price vs. Listing Age (Days)")
 
-ax2.scatter(df["Price"], df["Total View"])
+ax2.scatter(df["Price"], df["Total Views"])
 ax2.set_xlabel("Price")
 ax2.set_ylabel("Total View")
 ax2.set_title("Price vs. Price")
