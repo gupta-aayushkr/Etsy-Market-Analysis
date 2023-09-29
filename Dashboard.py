@@ -115,12 +115,14 @@ metric_col = [
 
 st.header("Top Shops Vs Metric")
 c1, c2 = st.columns(2)
-Metric = c1.selectbox('Select Metric', metric_col, help="Select Metric from this list")
-top_shops = df.groupby("ShopName")[Metric].sum().sort_values(ascending=False).head(10).reset_index()
+nested_c1_left, nested_c1_right = c1.columns(2)
+Metric = nested_c1_left.selectbox('Select Metric', metric_col, help="Select Metric from this list")
+Days = nested_c1_right.number_input("Under (Days)",format='%d',value=365)
+top_shops = df[df["Listing Age (Days)"] < Days].groupby("ShopName")[Metric].sum().sort_values(ascending=False).head(10).reset_index()
 fig = px.bar(top_shops, x='ShopName',y=Metric,labels={'x':'ShopName','y':'Metric'},title=f'Top 5 Shops with Highest {Metric}', width=600)
 fig.update_traces(marker=dict(color='#ff4b4b'))
 c1.plotly_chart(fig)
 
 c2.header(f"Listings with Highest {Metric}")
-top_shops = df.groupby("ShopName")[["Listing",Metric]].sum().sort_values(by=Metric, ascending=False).head(15).reset_index()
+top_shops = df[df["Listing Age (Days)"] < Days].groupby("ShopName")[["Listing",Metric]].sum().sort_values(by=Metric, ascending=False).head(15).reset_index()
 c2.dataframe(top_shops, width=1000, height=400)
