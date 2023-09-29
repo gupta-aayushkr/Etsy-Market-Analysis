@@ -70,7 +70,7 @@ nested_c1_left.metric("Average Price ($)", round(df["Price"].mean(), 2))
 nested_c1_left.metric("Average Revenue ($)", round(df["Est. Revenue"].mean(), 2))
 
 # right metric
-nested_c1_right.metric("Average Sales ($)", df["Est. Sales"].mean())
+nested_c1_right.metric("Average Sales", df["Est. Sales"].mean())
 nested_c1_right.metric("Average Heart", df["Hearts"].mean())
 nested_c1_right.metric("Average Views", df["Total Views"].mean())
 
