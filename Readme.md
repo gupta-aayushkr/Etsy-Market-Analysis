@@ -1,7 +1,5 @@
 # Etsy Data Analysis App
 
-![Etsy Logo](https://raw.githubusercontent.com/gupta-aayushkr/Etsy-Market-Analysis/main/etsy_logo.png)
-
 ## Introduction
 
 Welcome to the Etsy Marketplace Analysis App! This web application allows you to analyze and explore data from the Etsy marketplace. You can either upload your own CSV file or select one from the provided dataset for analysis.
