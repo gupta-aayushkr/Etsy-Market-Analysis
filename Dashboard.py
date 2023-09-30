@@ -79,13 +79,33 @@ nested_c1_right.metric("Average Views", df["Total Views"].mean())
 c2.header("All Listing Data")
 c2.dataframe(df, width=1000)
 
+#----------------------------SECTION 2-----------------------------------#
 
-#------------------------------SECTION 2---------------------------------#
+metric_col = ['Listing Age (Days)', 'Total Views', 'Daily Views', 'Est. Sales', 'Price', 'Est. Revenue','Hearts']
+metric_col2 = ['Listing', 'Listing Age (Days)', 'Total Views', 'Daily Views', 'Est. Sales', 'Price', 'Est. Revenue','Hearts']
+
+st.header("Top Shops Vs Metric")
+c1, c2 = st.columns(2)
+nested_c1_left, nested_c1_right = c1.columns(2)
+Metric = nested_c1_left.selectbox('Select Metric', metric_col, help="Select Metric from this list")
+Days = nested_c1_right.number_input("Under (Days)",format='%d',value=365)
+top_shops = df[df["Listing Age (Days)"] < Days].groupby("ShopName")[Metric].sum().sort_values(ascending=False).head(10).reset_index()
+fig = px.bar(top_shops, x='ShopName',y=Metric,labels={'x':'ShopName','y':'Metric'},title=f'Top 5 Shops with Highest {Metric}', width=600)
+fig.update_traces(marker=dict(color='#ff4b4b'))
+c1.plotly_chart(fig)
+
+c2.header(f"Listings with Highest {Metric}")
+more_metrics = c2.multiselect('Select Metrics', metric_col2, help="Select More Metrics from this list",default=['Listing', Metric])
+top_shops = df[df["Listing Age (Days)"] < Days].groupby("ShopName")[more_metrics].sum().sort_values(by=Metric, ascending=False).head(15).reset_index()
+c2.dataframe(top_shops, width=1000, height=400)
+
+
+#------------------------------SECTION 3---------------------------------#
 
 c1, c2= st.columns(2)
 c1.header("WordCloud")
 text_data = df['Listing'].str.cat(sep=' ')
-wordcloud = WordCloud(width=800, height=600, background_color='white').generate(text_data)
+wordcloud = WordCloud(width=800, height=400, background_color='white').generate(text_data)
 plt.figure(figsize=(10, 5))
 plt.imshow(wordcloud, interpolation='bilinear')
 plt.axis('off')
@@ -102,27 +122,3 @@ c2.dataframe(df2, width=1000, height=500)
 
 
 
-#----------------------------SECTION 3-----------------------------------#
-
-metric_col = [
-    'Listing Age (Days)',
-    'Total Views',
-    'Daily Views',
-    'Est. Sales',
-    'Price',
-    'Est. Revenue',
-    'Hearts']
-
-st.header("Top Shops Vs Metric")
-c1, c2 = st.columns(2)
-nested_c1_left, nested_c1_right = c1.columns(2)
-Metric = nested_c1_left.selectbox('Select Metric', metric_col, help="Select Metric from this list")
-Days = nested_c1_right.number_input("Under (Days)",format='%d',value=365)
-top_shops = df[df["Listing Age (Days)"] < Days].groupby("ShopName")[Metric].sum().sort_values(ascending=False).head(10).reset_index()
-fig = px.bar(top_shops, x='ShopName',y=Metric,labels={'x':'ShopName','y':'Metric'},title=f'Top 5 Shops with Highest {Metric}', width=600)
-fig.update_traces(marker=dict(color='#ff4b4b'))
-c1.plotly_chart(fig)
-
-c2.header(f"Listings with Highest {Metric}")
-top_shops = df[df["Listing Age (Days)"] < Days].groupby("ShopName")[["Listing",Metric]].sum().sort_values(by=Metric, ascending=False).head(15).reset_index()
-c2.dataframe(top_shops, width=1000, height=400)
