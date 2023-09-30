@@ -57,9 +57,9 @@ filtered_df = df.iloc[:,-7:]
 
 c1,c2 = st.columns(2)
 c1.title("Etsy data analysis")
-c1.info('''
-Information
-''')
+c1.info(''' Detailed Analysis: ([Jupyter Notebook](https://github.com/gupta-aayushkr/Etsy-Market-Analysis/blob/main/EDA.ipynb)), 
+                                ([WebApp](https://etsy-market-analysis.streamlit.app/Analysis)) 
+        ''')
 
 #For Informatin
 

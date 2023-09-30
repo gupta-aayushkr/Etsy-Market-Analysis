@@ -10,7 +10,9 @@ import os
 st.set_page_config(
         layout="centered")
 
-st.write("Detailed EDA (Jupyter Notebook): [EDA.ipynb](https://github.com/gupta-aayushkr/Etsy-Market-Analysis/blob/main/EDA.ipynb)", unsafe_allow_html=True)
+st.info('''Summarised Dashboard: ([Web App](https://github.com/gupta-aayushkr/Etsy-Market-Analysis/blob/main/EDA.ipynb)) | 
+        Detailed Analysis: ([Jupyter Notebook](https://github.com/gupta-aayushkr/Etsy-Market-Analysis/blob/main/EDA.ipynb)) 
+        ''')
 
 #For custom files
 file1 = st.file_uploader("Upload a CSV file", type=["csv"])
