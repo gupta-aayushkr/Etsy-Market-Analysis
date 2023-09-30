@@ -59,4 +59,4 @@ Enjoy exploring the Etsy marketplace data with this interactive app! 🛒📊
 
 ---
 
-**Note**: This README is generated automatically by the application code. Please refer to the live application for the most up-to-date analysis and data.
+**Author**: Aayush Kumar Gupta.
