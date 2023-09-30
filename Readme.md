@@ -32,7 +32,7 @@ Explore the top shops based on various metrics. Select a metric and a time frame
 - **Select Metric**: Choose a metric from the dropdown menu.
 - **Under (Days)**: Specify the time frame in days to filter the data.
 - **Top 5 Shops with Highest Metric**: Visualize the top 5 shops with the highest selected metric.
-- **Shops with Highest Metric**: View a table of shops with the highest selected metric, grouped by your choice of metric.
+- **Shops with Highest Metric**: View a table of shops with the highest selected metric.
 
 ### Section 3 - WordCloud and Word Frequencies
 
