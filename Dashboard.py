@@ -82,7 +82,7 @@ c2.dataframe(df, width=1000)
 #----------------------------SECTION 2-----------------------------------#
 
 metric_col = ['Listing Age (Days)', 'Total Views', 'Daily Views', 'Est. Sales', 'Price', 'Est. Revenue','Hearts']
-metric_col2 = ['Listing', 'Listing Age (Days)', 'Total Views', 'Daily Views', 'Est. Sales', 'Price', 'Est. Revenue','Hearts']
+metric_col2 = ['ShopName','Listing', 'Listing Age (Days)', 'Total Views', 'Daily Views', 'Est. Sales', 'Price', 'Est. Revenue','Hearts']
 
 st.header("Top Shops Vs Metric")
 c1, c2 = st.columns(2)
@@ -94,12 +94,16 @@ fig = px.bar(top_shops, x='ShopName',y=Metric,labels={'x':'ShopName','y':'Metric
 fig.update_traces(marker=dict(color='#ff4b4b'))
 c1.plotly_chart(fig)
 
-c2.header(f"Listings with Highest {Metric}")
-more_metrics = c2.multiselect('Select Metrics', metric_col2, help="Select More Metrics from this list",default=['Listing', Metric])
-top_shops = df[df["Listing Age (Days)"] < Days].groupby("ShopName")[more_metrics].sum().sort_values(by=Metric, ascending=False).head(15).reset_index()
-c2.dataframe(top_shops, width=1000, height=400)
-
-
+c2.header(f"Shops with Highest {Metric}")
+nested_c2_left, nested_c2_right = c2.columns(2)
+more_metrics = nested_c2_left.multiselect('Select Metrics', metric_col2, help="Select More Metrics from this list",default=[Metric])
+grpby_metric = ['ShopName', 'Listing']
+selected_grpby_metric = nested_c2_right.selectbox('Group By', grpby_metric, help="Select Metric from this list")
+try:
+    top_shops = df[df["Listing Age (Days)"] < Days].groupby(selected_grpby_metric)[more_metrics].sum().sort_values(by=Metric, ascending=False).head(15).reset_index()
+    c2.dataframe(top_shops, width=1000, height=400)
+except Exception as e:
+    c2.warning('An error occurred: {}'.format(e))
 #------------------------------SECTION 3---------------------------------#
 
 c1, c2= st.columns(2)
